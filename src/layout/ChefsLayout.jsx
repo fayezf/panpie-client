@@ -5,20 +5,18 @@ import { Col, Container, Row } from 'react-bootstrap';
 import RightNav from '../pages/Shared/RightNav/RightNav';
 import NavigationBar from '../pages/Shared/NavigationBar/NavigationBar';
 import { Outlet } from 'react-router-dom';
-import LeftNav from '../pages/Shared/LeftNav/LeftNav';
 
-const Main = () => {
+const ChefsLayout = () => {
     return (
         <div>
             <Header></Header>
             <NavigationBar></NavigationBar>
             <Container>
                 <Row>
-                    <Col lg={8}>
-                        <LeftNav></LeftNav>
+                    <Col lg={9}>
                         <Outlet></Outlet>
                     </Col>
-                    <Col lg={4}>
+                    <Col lg={3}>
                         <RightNav></RightNav>
                     </Col>
                 </Row>
@@ -28,4 +26,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default ChefsLayout;
