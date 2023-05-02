@@ -13,9 +13,6 @@ const Main = () => {
             <NavigationBar></NavigationBar>
             <Container>
                 <Row>
-                    <Col lg={3}>
-                        <LeftNav></LeftNav>
-                    </Col>
                     <Col lg={6}>
                         <h2>Main content coming</h2>
                     </Col>
