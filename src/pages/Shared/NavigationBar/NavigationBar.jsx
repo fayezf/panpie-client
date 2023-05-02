@@ -3,6 +3,7 @@ import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../AuthProviders/AuthProviders';
+import Slider from '../Slider/Slider';
 
 const NavigationBar = () => {
     
@@ -34,6 +35,7 @@ const NavigationBar = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <Slider></Slider>
         </Container>
     );
 };
