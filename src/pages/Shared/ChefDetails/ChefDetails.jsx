@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ChefDetails = ({ chef }) => {
     const { id, chefPicture, chefName, likes, numberOfRecipes, yearsOfExperience } = chef;
     return (
-        <Card className="mb-4 w-50">
+        <Card className="mt-4">
             <Card.Header className='d-flex align-items-center'>
                 <Card.Img className='rounded' variant="top" src={chefPicture} />
             </Card.Header>

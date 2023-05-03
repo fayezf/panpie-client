@@ -13,11 +13,8 @@ const ChefsLayout = () => {
             <NavigationBar></NavigationBar>
             <Container>
                 <Row>
-                    <Col lg={9}>
+                    <Col lg={12}>
                         <Outlet></Outlet>
-                    </Col>
-                    <Col lg={3}>
-                        <RightNav></RightNav>
                     </Col>
                 </Row>
             </Container>

@@ -14,10 +14,10 @@ const NavigationBar = () => {
                     <h2 className='fw-semibold'>Pan<span className='text-danger'>P</span>ie</h2>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mx-auto">
-                            <Link to={"/"} className='text-decoration-none'>Home</Link>
-                            <Nav.Link href="#pricing">About</Nav.Link>
-                            <Nav.Link href="#pricing">Blog</Nav.Link>
+                        <Nav className="mx-auto gap-3">
+                            <Link to="/" className='text-decoration-none'>Home</Link>
+                            <Link to="/about" className='text-decoration-none'>About</Link>
+                            <Link to="/blog" className='text-decoration-none'>Blog</Link>
                         </Nav>
                         <Nav className='gap-1'>
                             {
@@ -35,7 +35,6 @@ const NavigationBar = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Slider></Slider>
         </Container>
     );
 };

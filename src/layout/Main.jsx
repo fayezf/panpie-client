@@ -6,25 +6,24 @@ import RightNav from '../pages/Shared/RightNav/RightNav';
 import NavigationBar from '../pages/Shared/NavigationBar/NavigationBar';
 import { Outlet } from 'react-router-dom';
 import LeftNav from '../pages/Shared/LeftNav/LeftNav';
+import Slider from '../pages/Shared/Slider/Slider';
 
 const Main = () => {
     return (
-        <div>
+        <Container>
             <Header></Header>
             <NavigationBar></NavigationBar>
+            <Slider></Slider>
             <Container>
                 <Row>
-                    <Col lg={8}>
+                    <Col lg={12}>
                         <LeftNav></LeftNav>
                         <Outlet></Outlet>
-                    </Col>
-                    <Col lg={3}>
-                        <RightNav></RightNav>
                     </Col>
                 </Row>
             </Container>
             <Footer></Footer>
-        </div>
+        </Container>
     );
 };
 
