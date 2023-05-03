@@ -8,7 +8,7 @@ const ChefDetails = ({ chef }) => {
     return (
         <Card className="mb-4 w-50">
             <Card.Header className='d-flex align-items-center'>
-                <Card.Img variant="top" src={chefPicture} />
+                <Card.Img className='rounded' variant="top" src={chefPicture} />
             </Card.Header>
             <Card.Body>
                 <Card.Title>{chefName}</Card.Title>
@@ -25,7 +25,7 @@ const ChefDetails = ({ chef }) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className="text-center">
-                <Link><Button className='w-100 text-semibold' variant="success">View Recipe</Button></Link>
+                <Link to={`/chefs/${id}`}><Button className='w-100 text-semibold' variant="success">View Recipe</Button></Link>
             </Card.Footer>
         </Card>
     );

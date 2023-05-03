@@ -5,7 +5,7 @@ const LeftNav = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/chef')
+        fetch('http://localhost:5000/chefs')
             .then(res => res.json())
             .then(data => setChefs(data))
             .catch(error => console.error(error))
