@@ -13,13 +13,15 @@ const LeftNav = () => {
 
     return (
         <div>
-            <h4 className='mt-5'>All Chef Details</h4>
+            <h4 className='mt-4'>All Chef Details</h4>
+            <div className='ps-4'>
             {
                 chefs.map(chef => <ChefDetails 
                     key={chef.id}
                     chef={chef}
                     ></ChefDetails>)
             }
+            </div>
         </div>
     );
 };

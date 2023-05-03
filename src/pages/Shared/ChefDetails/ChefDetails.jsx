@@ -1,21 +1,33 @@
 import React from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const ChefDetails = ({ chef }) => {
     const { id, chefPicture, chefName, likes, numberOfRecipes, yearsOfExperience } = chef;
     return (
-        <Container>
-            <div className='mb-0'>
-                <img src={chefPicture} alt="" />
-                <h5>Name: {chefName}</h5>
-                <p><small>Years of Experience: {yearsOfExperience}</small></p>
-                <p><small>Number of Recipes: {numberOfRecipes}</small></p>
-                <p><FaRegThumbsUp></FaRegThumbsUp> {likes}</p>
-                <Link><Button className='fw-semibold' variant="success">View Recipes</Button></Link>
-            </div>
-        </Container>
+        <Card className="mb-4 w-50">
+            <Card.Header className='d-flex align-items-center'>
+                <Card.Img variant="top" src={chefPicture} />
+            </Card.Header>
+            <Card.Body>
+                <Card.Title>{chefName}</Card.Title>
+                <Card.Text>
+                    <p><small>Years of Experience: {yearsOfExperience}</small></p>
+                    <div className='text-muted d-flex'>
+                        <div className='flex-grow-1'>
+                            <p><small>Number of Recipes: {numberOfRecipes}</small></p>
+                        </div>
+                        <div>
+                            <FaRegThumbsUp /> {likes}
+                        </div>
+                    </div>
+                </Card.Text>
+            </Card.Body>
+            <Card.Footer className="text-center">
+                <Link><Button className='w-100 text-semibold' variant="success">View Recipe</Button></Link>
+            </Card.Footer>
+        </Card>
     );
 };
 
