@@ -6,29 +6,26 @@ import { useLoaderData } from 'react-router-dom';
 
 const Recipe = () => {
     const recipe = useLoaderData();
-    const { id, chefPicture, chefName, ratings, likes, ingredients, numberOfRecipes, yearsOfExperience, recipe_img, short } = recipe;
+    const { id, chefPicture, chefName, ratings, likes, recipe_img, name, method_of_cooking, numberOfRecipes, yearsOfExperience, description } = recipe;
     return (
-        <div className='mt-4'>
+        <div className='mt-4 '>
             <h3 className='text-center'>Recipe Category</h3>
-            <div className='d-flex gap-3'>
-                <Card className='w-50'>
-                    <Card.Img className='rounded' variant="top" src={chefPicture} />
-                    <Card.Body className='mb-0'>
-                        <Card.Title>{chefName}</Card.Title>
-                        <Card.Text>
-                            <p className='mb-0'><small>Experience: {yearsOfExperience}</small></p>
-                            <p><small>Recipes number: {numberOfRecipes}</small></p>
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-                <Card className='w-50'>
+            <div className='d-flex justify-content-center align-items-center gap-3 mt-3'>
+                <img className='w-50' src={chefPicture} alt="" />
+                <div>
+                    <h4>{chefName}</h4>
+                    <p><small>Description: {description}</small></p>
+                    <p className='mb-0'><small>Experience: {yearsOfExperience}</small></p>
+                    <p><small>Number of Recipes: {numberOfRecipes}</small></p>
+                </div>
+            </div>
+            <section className='mt-4'>
+            <Card className='w-50 mx-auto'>
                     <Card.Img className='rounded' variant="top" src={recipe_img} />
                     <Card.Body className='mb-0'>
-                        <Card.Title>{short}</Card.Title>
+                        <Card.Title>Name: {name}</Card.Title>
                         <Card.Text>
-                            <ul>
-                                <li>{ingredients}</li>
-                            </ul>
+                            <p><small>Ingredients: {method_of_cooking}</small></p>
                         </Card.Text>
                         <Button className='text-semibold' variant="success">Add to favorite</Button>
                     </Card.Body>
@@ -41,14 +38,14 @@ const Recipe = () => {
                                 placeholderSymbol={<FaStar className='text-warning'></FaStar>}
                                 fullSymbol={<FaStar />}
                             ></Rating>
-                            <span>{ratings}</span>
+                            <span className='text-warning'>{ratings}</span>
                         </div>
                         <div>
                             <FaRegThumbsUp /> {likes}
                         </div>
                     </Card.Footer>
                 </Card>
-            </div>
+            </section>
         </div>
     );
 };
