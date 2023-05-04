@@ -6,7 +6,15 @@ import { AuthContext } from '../../../AuthProviders/AuthProviders';
 import Slider from '../Slider/Slider';
 
 const NavigationBar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () =>{
+        logOut()
+        .then()
+        .catch(error =>{
+            console.log(error)
+        })
+    }
     return (
         <Container>
             <Navbar className='mt-2' collapseOnSelect expand="lg" bg="light" variant="light">
@@ -26,7 +34,7 @@ const NavigationBar = () => {
                             }
                             {
                                 user ?
-                                    <Button variant="secondary">Logout</Button> :
+                                    <Button onClick={handleLogout} variant="secondary">Logout</Button> :
                                     <Link to={'/login'}>
                                         <Button variant="secondary">Login</Button>
                                     </Link>
