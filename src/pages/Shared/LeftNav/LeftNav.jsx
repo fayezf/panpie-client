@@ -5,7 +5,7 @@ const LeftNav = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/chefs')
+        fetch('https://assignment-10-server-fayezf.vercel.app/chefs')
             .then(res => res.json())
             .then(data => setChefs(data))
             .catch(error => console.error(error))
