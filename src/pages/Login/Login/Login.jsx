@@ -4,15 +4,15 @@ import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
 import Footer from '../../Shared/Footer/Footer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProviders/AuthProviders';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
-    console.log('login page location', location)
     const from = location.state?.from?.pathname || '/'
 
-    const handleLogin = event =>{
+    const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -21,15 +21,20 @@ const Login = () => {
         console.log(email, password)
 
         signIn(email, password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser)
-            navigate(from, {replace: true})
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                navigate(from, { replace: true })
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
+
+    const handleGoogleSignIN = () =>{
+        console.log('google mama coming')
+    } 
+
     return (
         <Container>
             <NavigationBar></NavigationBar>
@@ -52,11 +57,11 @@ const Login = () => {
                     <Form.Text className="text-secondary">
                         Don't have an account? <Link to="/register">Register</Link>
                     </Form.Text>
-                    <Form.Text className="text-success">
-
+                    <Form.Text className='mt-3'>
+                        <Button onClick={handleGoogleSignIN} className='mb-2' variant="outline-primary"> <FaGoogle /> Login with Google</Button>
                     </Form.Text>
                     <Form.Text className="text-danger">
-
+                        <Button className='mb-2' variant="outline-secondary"> <FaGithub /> Login with Github</Button>
                     </Form.Text>
                 </Form>
             </div>

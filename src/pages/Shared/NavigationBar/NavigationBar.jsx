@@ -8,12 +8,12 @@ import Slider from '../Slider/Slider';
 const NavigationBar = () => {
     const { user, logOut } = useContext(AuthContext);
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         logOut()
-        .then()
-        .catch(error =>{
-            console.log(error)
-        })
+            .then()
+            .catch(error => {
+                console.log(error)
+            })
     }
     return (
         <Container>
@@ -24,7 +24,6 @@ const NavigationBar = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto gap-3">
                             <Link to="/" className='text-decoration-none'>Home</Link>
-                            <Link to="/about" className='text-decoration-none'>About</Link>
                             <Link to="/blog" className='text-decoration-none'>Blog</Link>
                         </Nav>
                         <Nav className='gap-1'>
