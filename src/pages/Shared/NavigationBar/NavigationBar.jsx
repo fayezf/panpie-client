@@ -6,7 +6,7 @@ import { AuthContext } from '../../../AuthProviders/AuthProviders';
 import Slider from '../Slider/Slider';
 
 const NavigationBar = () => {
-    
+    const { user } = useContext(AuthContext)
     return (
         <Container>
             <Navbar className='mt-2' collapseOnSelect expand="lg" bg="light" variant="light">
@@ -21,15 +21,15 @@ const NavigationBar = () => {
                         </Nav>
                         <Nav className='gap-1'>
                             {
-                                // user && 
+                                user &&
                                 <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle>
                             }
                             {
-                            // user ?
-                            //     <Button variant="secondary">Logout</Button> :
-                                <Link to={'/login'}>
-                                    <Button variant="secondary">Login</Button>
-                                </Link>
+                                user ?
+                                    <Button variant="secondary">Logout</Button> :
+                                    <Link to={'/login'}>
+                                        <Button variant="secondary">Login</Button>
+                                    </Link>
                             }
                         </Nav>
                     </Navbar.Collapse>

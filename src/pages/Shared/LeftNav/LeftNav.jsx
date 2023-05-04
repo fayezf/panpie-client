@@ -13,7 +13,7 @@ const LeftNav = () => {
 
     return (
         <div>
-            <h4 className='mt-4'>All Chef Details</h4>
+            <h4 className='mt-4 text-center'>All Chef Details</h4>
             <div className=' row row-cols-1 row-cols-md-2'>
             {
                 chefs.map(chef => <ChefDetails 
