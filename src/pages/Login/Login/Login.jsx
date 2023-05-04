@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
 import Footer from '../../Shared/Footer/Footer';
@@ -7,6 +7,9 @@ import { AuthContext } from '../../../AuthProviders/AuthProviders';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
+    const [valid, setValid] = useState('')
+    const [success, setSuccess] = useState('')
+
     const { signIn } = useContext(AuthContext)
     const navigate = useNavigate();
     const location = useLocation();
@@ -20,6 +23,23 @@ const Login = () => {
 
         console.log(email, password)
 
+        // validation
+        setValid('');
+        setSuccess('');
+
+        if (!/(?=.*[A-Z]).[A-Z]/.test(password)) {
+            setValid('Please add at least two uppercase.')
+            return
+        }
+        else if (!/(?=.*[!@#$&*])/.test(password)) {
+            setValid('Please add a special character.');
+            return
+        }
+        else if (password.length < 6) {
+            setValid('Password must be 6 characters long');
+            return
+        }
+
         signIn(email, password)
             .then(result => {
                 const loggedUser = result.user;
@@ -31,9 +51,9 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignIN = () =>{
+    const handleGoogleSignIN = () => {
         console.log('google mama coming')
-    } 
+    }
 
     return (
         <Container>
@@ -53,6 +73,8 @@ const Login = () => {
                     <Button variant="primary" type="submit">
                         Login
                     </Button>
+                    <p className='text-danger'>{valid}</p>
+                    <p className='text-success'>{success}</p>
                     <br />
                     <Form.Text className="text-secondary">
                         Don't have an account? <Link to="/register">Register</Link>
