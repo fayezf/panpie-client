@@ -5,10 +5,16 @@ import Footer from '../../Shared/Footer/Footer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProviders/AuthProviders';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '../../../firebase/firebase.config';
 
 const Login = () => {
     const [valid, setValid] = useState('')
     const [success, setSuccess] = useState('')
+
+    const auth = getAuth(app)
+    const googleProvider =new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider()
 
     const { signIn } = useContext(AuthContext)
     const navigate = useNavigate();
@@ -52,7 +58,27 @@ const Login = () => {
     }
 
     const handleGoogleSignIN = () => {
-        console.log('google mama coming')
+        signInWithPopup(auth,googleProvider)
+        .then(result =>{
+            const loggedUser =result.user;
+            console.log(loggedUser);
+        })
+        .catch(error=>{
+            console.log('error', error.message)
+        })
+
+    }
+
+    const handleGithubSignIn = () =>{
+        signInWithPopup(auth,githubProvider)
+        .then(result =>{
+            const loggedUser =result.user;
+            console.log(loggedUser);
+        })
+        .catch(error=>{
+            console.log('error', error.message)
+        })
+
     }
 
     return (
@@ -80,10 +106,10 @@ const Login = () => {
                         Don't have an account? <Link to="/register">Register</Link>
                     </Form.Text>
                     <Form.Text className='mt-3'>
-                        <Button onClick={handleGoogleSignIN} className='mb-2' variant="outline-primary"> <FaGoogle /> Login with Google</Button>
+                        <Button onClick={handleGoogleSignIN} className='my-2' variant="outline-primary"> <FaGoogle /> Login with Google</Button>
                     </Form.Text>
                     <Form.Text className="text-danger">
-                        <Button className='mb-2' variant="outline-secondary"> <FaGithub /> Login with Github</Button>
+                        <Button onClick={handleGithubSignIn} className='my-2' variant="outline-secondary"> <FaGithub /> Login with Github</Button>
                     </Form.Text>
                 </Form>
             </div>

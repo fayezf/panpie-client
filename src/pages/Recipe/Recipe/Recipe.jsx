@@ -32,7 +32,7 @@ const Recipe = () => {
                     <Card.Footer className='text-muted d-flex'>
                         <div className='flex-grow-1'>
                             <Rating
-                                placeholderRating={ratings}
+                                placeholderRating={Math.round(ratings || 0)}
                                 readonly
                                 emptySymbol={<FaRegStar />}
                                 placeholderSymbol={<FaStar className='text-warning'></FaStar>}
