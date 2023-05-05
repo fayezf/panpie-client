@@ -11,7 +11,7 @@ const ChefDetails = ({ chef }) => {
                 <Card.Img className='rounded' variant="top" src={chefPicture} />
             </Card.Header>
             <Card.Body>
-                <Card.Title>{chefName}</Card.Title>
+                <Card.Title className='text-semibold'>{chefName}</Card.Title>
                 <Card.Text>
                     <p><small>Years of Experience: {yearsOfExperience}</small></p>
                     <div className='text-muted d-flex'>

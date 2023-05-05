@@ -1,12 +1,20 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-import { FaRegStar, FaRegThumbsUp, FaStar } from 'react-icons/fa';
+import {  FaRegStar, FaRegThumbsUp, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 import { useLoaderData } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Recipe = () => {
     const recipe = useLoaderData();
     const { id, chefPicture, chefName, ratings, likes, recipe_img, name, method_of_cooking, numberOfRecipes, yearsOfExperience, description } = recipe;
+
+    const handleClick = event => {
+        event.currentTarget.disabled = true;
+        toast('Good job')
+
+    }
+
     return (
         <div className='mt-4 '>
             <h3 className='text-center'>Recipe Category</h3>
@@ -20,14 +28,17 @@ const Recipe = () => {
                 </div>
             </div>
             <section className='mt-4'>
-            <Card className='w-50 mx-auto'>
+                <Card className='w-50 mx-auto'>
                     <Card.Img className='rounded' variant="top" src={recipe_img} />
                     <Card.Body className='mb-0'>
                         <Card.Title>Name: {name}</Card.Title>
                         <Card.Text>
                             <p><small>Ingredients: {method_of_cooking}</small></p>
                         </Card.Text>
-                        <Button className='text-semibold' variant="success">Add to favorite</Button>
+                        <div>
+                            <Button onClick={handleClick} className='text-semibold' variant="success">Add to favorite</Button>
+                        </div>
+                            <ToastContainer></ToastContainer>
                     </Card.Body>
                     <Card.Footer className='text-muted d-flex'>
                         <div className='flex-grow-1'>
