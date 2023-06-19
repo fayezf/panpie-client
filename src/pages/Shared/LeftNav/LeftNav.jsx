@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ChefDetails from '../ChefDetails/ChefDetails';
+import Contact from '../Contact/Contact';
 
 const LeftNav = () => {
     const [chefs, setChefs] = useState([]);
@@ -21,6 +22,7 @@ const LeftNav = () => {
                     chef={chef}
                     ></ChefDetails>)
             }
+            <Contact></Contact>
             </div>
         </div>
     );

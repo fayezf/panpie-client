@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
+import { Button, Container, Image, Nav, Navbar } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProviders/AuthProviders';
 import Slider from '../Slider/Slider';
 
@@ -19,18 +18,18 @@ const NavigationBar = () => {
         <Container>
             <Navbar className='mt-2' collapseOnSelect expand="lg" bg="light" variant="light">
                 <Container>
-                    <h2 className='fw-semibold'>Pan<span className='text-danger'>P</span>ie</h2>
+                    <Link className='text-decoration-none' to="/"><h2 className='fw-semibold text-black'>Pan<span className='text-danger'>P</span>ie</h2></Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mx-auto gap-3">
-                            <Link to="/" className='text-decoration-none'>Home</Link>
-                            <Link to="/about" className='text-decoration-none'>About</Link>
-                            <Link to="/blog" className='text-decoration-none'>Blog</Link>
+                            <NavLink to="/" className={({isActive})=> (isActive ? 'text-decoration-none text-success' : 'text-decoration-none')}>Home</NavLink>
+                            <NavLink to="/about" className={({isActive})=> (isActive ? 'text-decoration-none text-success' : 'text-decoration-none')}>About</NavLink>
+                            <NavLink to="/blog" className={({isActive})=> (isActive ? 'text-decoration-none text-success' : 'text-decoration-none')}>Blog</NavLink>
                         </Nav>
                         <Nav className='gap-1'>
                             {
                                 user &&
-                                <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle>
+                                <Image title={user.displayName} style={{ width: '40px' }} src={user.photoURL} roundedCircle />
                             }
                             {
                                 user ?

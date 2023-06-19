@@ -9,8 +9,6 @@ import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from
 import app from '../../../firebase/firebase.config';
 
 const Login = () => {
-    const [valid, setValid] = useState('')
-    const [success, setSuccess] = useState('')
 
     const auth = getAuth(app)
     const googleProvider =new GoogleAuthProvider();
@@ -29,22 +27,6 @@ const Login = () => {
 
         console.log(email, password)
 
-        // validation
-        setValid('');
-        setSuccess('');
-
-        if (!/(?=.*[A-Z]).[A-Z]/.test(password)) {
-            setValid('Please add at least two uppercase.')
-            return
-        }
-        else if (!/(?=.*[!@#$&*])/.test(password)) {
-            setValid('Please add a special character.');
-            return
-        }
-        else if (password.length < 6) {
-            setValid('Password must be 6 characters long');
-            return
-        }
 
         signIn(email, password)
             .then(result => {
@@ -99,8 +81,6 @@ const Login = () => {
                     <Button variant="primary" type="submit">
                         Login
                     </Button>
-                    <p className='text-danger'>{valid}</p>
-                    <p className='text-success'>{success}</p>
                     <br />
                     <Form.Text className="text-secondary">
                         Don't have an account? <Link to="/register">Register</Link>

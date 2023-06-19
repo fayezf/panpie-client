@@ -2,12 +2,15 @@ import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
 import Footer from '../../Shared/Footer/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProviders/AuthProviders';
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext)
+    const { createUser, updateUserProfile } = useContext(AuthContext)
     const [accepted, setAccepted] = useState(false);
+    const [valid, setValid] = useState('')
+    const [success, setSuccess] = useState('')
+    const navigate = useNavigate();
 
     const handleRegister = event => {
         event.preventDefault()
@@ -19,17 +22,36 @@ const Register = () => {
 
         console.log(name, photo, email, password)
 
+        // validation
+        setValid('');
+        setSuccess('');
+
+        if (!/(?=.*[A-Z]).[A-Z]/.test(password)) {
+            setValid('Please add at least two uppercase.')
+            return
+        }
+        else if (!/(?=.*[!@#$&*])/.test(password)) {
+            setValid('Please add a special character.');
+            return
+        }
+        else if (password.length < 6) {
+            setValid('Password must be 6 characters long');
+            return
+        }
+
         createUser(email, password)
-        .then(result => {
-            const createdUser = result.user;
-            console.log(createdUser)
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+            .then(result => {
+                const createdUser = result.user;
+                updateUserProfile(createdUser, name, photo)
+                console.log(createdUser)
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
-    const handleAccepted = event =>{
+    const handleAccepted = event => {
         setAccepted(event.target.checked)
     }
 
@@ -45,7 +67,7 @@ const Register = () => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Photo URL</Form.Label>
-                        <Form.Control type="text" name='photo' placeholder="Photo URL" />
+                        <Form.Control type="text" name='photo' placeholder="Photo URL" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
@@ -57,15 +79,17 @@ const Register = () => {
                         <Form.Control type="password" name='password' placeholder="Password" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check 
-                        onClick={handleAccepted}
-                        type="checkbox" 
-                        name='accept' 
-                        label={<>Accept <Link to="/terms">Terms and Conditions</Link></>} />
+                        <Form.Check
+                            onClick={handleAccepted}
+                            type="checkbox"
+                            name='accept'
+                            label={<>Accept <Link to="/terms">Terms and Conditions</Link></>} />
                     </Form.Group>
                     <Button variant="primary" disabled={!accepted} type="submit">
                         Register
                     </Button>
+                    <p className='text-danger'>{valid}</p>
+                    <p className='text-success'>{success}</p>
                     <br />
                     <Form.Text className="text-secondary">
                         Already have an account? <Link to="/login">Login</Link>

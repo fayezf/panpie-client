@@ -37,8 +37,8 @@ const Recipe = () => {
                         </Card.Text>
                         <div>
                             <Button onClick={handleClick} className='text-semibold' variant="success">Add to favorite</Button>
-                        </div>
                             <ToastContainer></ToastContainer>
+                        </div>
                     </Card.Body>
                     <Card.Footer className='text-muted d-flex'>
                         <div className='flex-grow-1'>
